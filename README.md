@@ -2,7 +2,7 @@
 
 ---
 
-### This repo is not actively maintained. Please consider using [dawonn/vectornav](https://github.com/dawonn/vectornav)
+
 
 ---
 
