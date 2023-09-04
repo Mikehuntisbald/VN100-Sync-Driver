@@ -2,10 +2,6 @@
 
 ---
 
-
-
----
-
 The `imu_vn_100` package is a linux ROS driver for VN-100 Rugged IMU of [VECTORNAV](http://www.vectornav.com/). The package is developed based on the official [SDK v0.3.2](http://www.vectornav.com/support/downloads) for Linux. The user manual for the device can be found [here](http://www.vectornav.com/docs/default-source/documentation/vn-100-documentation/UM001.pdf?sfvrsn=10).
 
 The package is tested on Ubuntu 14.04 with ROS indigo.
