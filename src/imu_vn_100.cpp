@@ -62,6 +62,7 @@ bool ImuVn100::SyncInfo::SyncEnabled() const { return rate > 0; }
 void ImuVn100::SyncInfo::FixSyncRate() {
   // Check the sync out rate
   if (SyncEnabled()) {
+    ROS_WARN("enabled");
     if (ImuVn100::kBaseImuRate % rate != 0) {
       rate = ImuVn100::kBaseImuRate / (ImuVn100::kBaseImuRate / rate);
       ROS_INFO("Set SYNC_OUT_RATE to %d", rate);
@@ -76,7 +77,7 @@ void ImuVn100::SyncInfo::FixSyncRate() {
       pulse_width_us = 1000;
     }
     rate_double = rate;
-  }
+  }else ROS_WARN("not enabled");
 
   ROS_INFO("Sync out rate: %d", rate);
 }
@@ -275,7 +276,9 @@ void ImuVn100::PublishData(const VnDeviceCompositeData& data) {
   // } 
 
   sensor_msgs::Imu imu_msg;
+  if (sync_info_.SyncEnabled()){
   imu_msg.header.stamp = sync_info_.time + time_since_sync_in;
+  }else imu_msg.header.stamp = ros::Time::now();
   std::cout<<imu_msg.header.stamp<<std::endl;
   std::cout<<data.syncInCnt<<"  "<<data.timeSyncIn<<std::endl;
   imu_msg.header.frame_id = frame_id_;
